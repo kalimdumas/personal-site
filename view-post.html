@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Post</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    nav a {
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./projects.html">Projects</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./about.html">About</a>
+  </nav>
+
+  <main id="post-content">
+    <p>Loading post…</p>
+  </main>
+
+  <script>
+    function getSlugFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('slug');
+    }
+
+    fetch('./blog/posts.json')
+      .then(res => res.json())
+      .then(posts => {
+        const slug = getSlugFromURL();
+        const post = posts.find(p => p.slug === slug);
+        const container = document.getElementById('post-content');
+
+        if (!post) {
+          container.innerHTML = '<p>Post not found.</p>';
+          return;
+        }
+
+        container.innerHTML = `
+          <h1>${post.title}</h1>
+          <small>${post.date}</small>
+          <p>${post.summary}</p>
+          <hr />
+          <p>${post.body.replace(/\n/g, '<br>')}</p>
+        `;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('post-content').innerHTML = '<p>Failed to load post.</p>';
+      });
+  </script>
+</body>
+</html>
