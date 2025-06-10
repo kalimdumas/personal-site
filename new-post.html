@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Post</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    label {
+      display: block;
+      margin: 1rem 0 0.25rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create a New Post</h1>
+
+  <label for="title">Title</label>
+  <input id="title" type="text" />
+
+  <label for="date">Date</label>
+  <input id="date" type="date" />
+
+  <label for="summary">Summary</label>
+  <input id="summary" type="text" />
+
+  <label for="body">Body</label>
+  <textarea id="body" rows="10"></textarea>
+
+  <button onclick="generate()">Generate Post</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function generate() {
+      const title = document.getElementById('title').value;
+      const date = document.getElementById('date').value;
+      const summary = document.getElementById('summary').value;
+      const body = document.getElementById('body').value;
+
+      const filename = title.toLowerCase().replace(/\s+/g, '-') + '.html';
+
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title} — Kalim Dumas</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+    nav a { margin-right: 1rem; text-decoration: none; color: #007acc; }
+    nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>${title}</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/about.html">About</a>
+  </nav>
+
+  <main>
+    <p><em>${date}</em></p>
+    <p>${body}</p>
+  </main>
+</body>
+</html>`;
+
+      document.getElementById('output').textContent = `File: blog/${filename}\n\n` + html;
+    }
+  </script>
+</body>
+</html>

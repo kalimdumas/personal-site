@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalim Dumas — Personal Website</title>
+  <title>Blog — Kalim Dumas</title>
   <style>
     body {
       font-family: sans-serif;
@@ -20,20 +20,29 @@
     nav a:hover {
       text-decoration: underline;
     }
+    .post {
+      margin-bottom: 1.5rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Kalim Dumas</h1>
+  <h1>Blog</h1>
   <nav>
     <a href="./index.html">Home</a>
     <a href="./projects.html">Projects</a>
     <a href="./blog.html">Blog</a>
     <a href="./about.html">About</a>
   </nav>
+    <p><a href="./new-post.html" style="display: inline-block; padding: 0.5em 1em; background: #007acc; color: white; border-radius: 4px; text-decoration: none;">➕ New Post</a></p>
 
   <main>
-    <h2>Welcome</h2>
-    <p>This is the beginning of your personal website. You can showcase projects, post blogs, and add more over time.</p>
+    <div class="post">
+      <h2><a href="/blog/hello-world.html">Hello World</a></h2>
+      <small>June 9, 2025</small>
+      <p>A quick intro to the blog and future topics I'll cover.</p>
+    </div>
+
+    <!-- Add more posts here -->
   </main>
 </body>
 </html>
